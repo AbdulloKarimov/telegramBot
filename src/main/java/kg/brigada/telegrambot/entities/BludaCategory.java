@@ -3,7 +3,10 @@ package kg.brigada.telegrambot.entities;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Getter
 @Setter
@@ -14,15 +17,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Bludo {
+public class BludaCategory {
     @Id
     @GeneratedValue
     Long id;
 
     String name;
-
-    Double price;
-
-    @ManyToOne
-    BludaCategory bludaCategory;
 }

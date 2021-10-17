@@ -26,5 +26,7 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER)
     Users users;
 
-    LocalDateTime localDateTime;
+    Boolean ordered;
+
+    LocalDateTime orderDate;
 }
