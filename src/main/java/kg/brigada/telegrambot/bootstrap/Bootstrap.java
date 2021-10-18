@@ -51,6 +51,10 @@ public class Bootstrap implements CommandLineRunner {
                 .name("Манты")
                 .build();
         bludaCategoryRepo.save(manty);
+        BludaCategory other = BludaCategory.builder()
+                .name("Другое")
+                .build();
+        bludaCategoryRepo.save(other);
 
         List<Bludo> bludoList = new ArrayList<>();
         bludoList.addAll(
@@ -428,6 +432,21 @@ public class Bootstrap implements CommandLineRunner {
                                 .name("Манты деликатес")
                                 .price(34.0)
                                 .bludaCategory(manty)
+                                .build()
+                )
+        );
+        bludoRepo.saveAll(bludoList);
+        bludoList.addAll(
+                Arrays.asList(
+                        Bludo.builder()
+                                .name("Компот")
+                                .price(30.0)
+                                .bludaCategory(other)
+                                .build(),
+                        Bludo.builder()
+                                .name("Хлеб")
+                                .price(5.0)
+                                .bludaCategory(other)
                                 .build()
                 )
         );

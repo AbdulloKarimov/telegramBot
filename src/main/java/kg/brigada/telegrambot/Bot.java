@@ -11,6 +11,8 @@ import kg.brigada.telegrambot.repos.OrderRepo;
 import kg.brigada.telegrambot.repos.UsersRepo;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -29,6 +31,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Transactional
+@EnableAsync
 public class Bot extends TelegramLongPollingBot {
     @Autowired
     private BludoRepo bludoRepo;
@@ -87,7 +90,8 @@ public class Bot extends TelegramLongPollingBot {
 
     }
 
-    private void makeOrder(CallbackQuery callbackQuery, Message message, String s) throws org.telegram.telegrambots.meta.exceptions.TelegramApiException {
+    @Async
+    void makeOrder(CallbackQuery callbackQuery, Message message, String s) throws org.telegram.telegrambots.meta.exceptions.TelegramApiException {
         Long id = Long.parseLong(s);
         Bludo bludo = bludoRepo.getById(id);
         System.out.println(bludo.getName());
